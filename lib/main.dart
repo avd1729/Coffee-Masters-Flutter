@@ -34,16 +34,23 @@ class _HelloWorldState extends State<HelloWorld>
 }
 
 // Stateless widget doesnt change.
-class Greet extends StatelessWidget {
+class Greet extends StatefulWidget {
   const Greet({super.key});
 
   @override
+  State<Greet> createState() => _GreetState();
+}
+
+class _GreetState extends State<Greet> {
+  var name = "";
+  @override
   Widget build(BuildContext context) {
-    var name = "";
     return Column(
       children: [
         Text("Hello $name"),
-        TextField(onChanged: (value) => name = value,),
+        TextField(onChanged: (value) => setState(() {
+          name = value;
+        })),
       ],
     );
   }
