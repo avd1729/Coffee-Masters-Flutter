@@ -33,6 +33,22 @@ class _HelloWorldState extends State<HelloWorld>
   }
 }
 
+// Stateless widget doesnt change.
+class Greet extends StatelessWidget {
+  const Greet({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var name = "";
+    return Column(
+      children: [
+        Text("Hello $name"),
+        TextField(onChanged: (value) => name = value,),
+      ],
+    );
+  }
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -59,7 +75,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Home Page'),
     );
   }
 }
@@ -102,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: HelloWorld(), // This trailing comma makes auto-formatting nicer for build methods.
+      body: Greet(), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
