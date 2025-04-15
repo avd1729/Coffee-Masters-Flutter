@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:coffee_masters/model/category.dart';
 import 'package:coffee_masters/model/itemincart.dart';
 import 'package:coffee_masters/model/product.dart';
+import 'package:http/http.dart' as http;
 
 class DataManager {
   List<Category>? _menu;
@@ -33,5 +36,31 @@ class DataManager {
       total += item.quantity * item.product.price;
     }
     return total;
+  }
+
+  fetchMenu() async {
+    try {
+      const url = 'https://firtman.github.io/coffeemasters/api/menu.json';
+      var response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        _menu = [];
+        var decodedData = jsonDecode(response.body) as List<dynamic>;
+        for (var json in decodedData) {
+          _menu?.add(Category.fromJson(json));
+        }
+      } else {
+        throw Exception("Error loading data");
+      }
+    } catch (e) {
+      throw Exception("Error loading data");
+    }
+  }
+
+  Future<List<Category>> getMenu() async {
+    if (_menu == null) {
+      await fetchMenu();
+    }
+    return _menu!;
   }
 }
