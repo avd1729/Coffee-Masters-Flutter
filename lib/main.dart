@@ -1,4 +1,4 @@
-import 'package:coffee_masters/offerspage.dart';
+import 'package:coffee_masters/pages/offers.dart';
 import 'package:flutter/material.dart';
 
 void main() {
