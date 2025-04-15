@@ -1,3 +1,4 @@
+import 'package:coffee_masters/offerspage.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -106,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body: Greet(),
+      body: OffersPage(),
     );
   }
 }
