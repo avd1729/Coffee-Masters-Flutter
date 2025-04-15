@@ -8,26 +8,43 @@ class MenuPage extends StatelessWidget {
   const MenuPage({super.key, required this.dataManager});
 
   @override
-Widget build(BuildContext context) {
-    return FutureBuilder<List<Category>>(
-      future: dataManager.getMenu(),
-      builder: (context, snapshot) {
-        
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (snapshot.hasError) {
-          return Center(child: Text('Error: ${snapshot.error}'));
-        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-          return const Center(child: Text('No categories found'));
-        }
+  Widget build(BuildContext context) {
+      return FutureBuilder<List<Category>>(
+        future: dataManager.getMenu(),
+        builder: (context, snapshot) {
+          
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return const Center(child: Text('No categories found'));
+          }
 
-        final categories = snapshot.data!;
-        return ListView(
-          children: categories.map((cat) => Text(cat.name)).toList(),
-        );
-      },
-    );
-  }
+          final categories = snapshot.data!;
+          return ListView.builder(
+            itemCount: categories.length,
+            itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(categories[index].name),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: ClampingScrollPhysics(),
+                  itemCount: categories[index].products.length,
+                  itemBuilder: (context, prodIndex) {
+                    return ProductItem(product: categories[index].products[prodIndex], 
+                    onAdd: () {});
+                })
+              ],
+            );
+          });
+        },
+      );
+    }
 }
 
 class ProductItem extends StatelessWidget {
@@ -45,7 +62,7 @@ class ProductItem extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset("images/black_coffee.png"),
+            Image.network(product.imageUrl),
             Row(
               children: [
                 Padding(
