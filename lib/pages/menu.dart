@@ -1,5 +1,6 @@
 import 'package:coffee_masters/data_manager.dart';
 import 'package:coffee_masters/model/product.dart';
+import 'package:coffee_masters/model/category.dart';
 import 'package:flutter/material.dart';
 
 class MenuPage extends StatelessWidget {
@@ -7,22 +8,24 @@ class MenuPage extends StatelessWidget {
   const MenuPage({super.key, required this.dataManager});
 
   @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        ProductItem(
-        product: Product(
-          id: 1, 
-          name: "IPhone 16 Pro Max", 
-          price: 2000, 
-          image: ""), onAdd: () {},),
-        ProductItem(
-        product: Product(
-          id: 1, 
-          name: "IPhone 16 Pro Max", 
-          price: 2000, 
-          image: ""), onAdd: () {},)
-      ],
+Widget build(BuildContext context) {
+    return FutureBuilder<List<Category>>(
+      future: dataManager.getMenu(),
+      builder: (context, snapshot) {
+        
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Center(child: Text('No categories found'));
+        }
+
+        final categories = snapshot.data!;
+        return ListView(
+          children: categories.map((cat) => Text(cat.name)).toList(),
+        );
+      },
     );
   }
 }

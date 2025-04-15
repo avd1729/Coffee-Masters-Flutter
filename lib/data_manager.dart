@@ -38,7 +38,7 @@ class DataManager {
     return total;
   }
 
-  fetchMenu() async {
+  Future<void> fetchMenu() async {
     try {
       const url = 'https://firtman.github.io/coffeemasters/api/menu.json';
       var response = await http.get(Uri.parse(url));
