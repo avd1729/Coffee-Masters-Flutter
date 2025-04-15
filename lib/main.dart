@@ -28,8 +28,26 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  var selectedIndex = 1;
+
   @override
   Widget build(BuildContext context) {
+
+    Widget currentWidgetPage = const Text("");
+
+    switch (selectedIndex){
+      case 0:
+        currentWidgetPage = const Text("");
+        break;
+       case 1:
+        currentWidgetPage = OffersPage();
+        break;
+       case 2:
+        currentWidgetPage = const Text("");
+        break;
+      
+    }
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onPrimaryFixed,
@@ -41,12 +59,21 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ),
       ),
-      body: OffersPage(),
-      bottomNavigationBar: BottomNavigationBar(items: const [
+      bottomNavigationBar: BottomNavigationBar(
+        
+        currentIndex: selectedIndex,
+        onTap: (value) => {
+          setState(() {
+            selectedIndex = value;
+          })
+        },
+        items: const [
         BottomNavigationBarItem(label: "Menu", icon: Icon(Icons.coffee)),
         BottomNavigationBarItem(label: "Offers", icon: Icon(Icons.local_offer)),
         BottomNavigationBarItem(label: "Order", icon: Icon(Icons.shopping_basket)),
       ]),
+
+      body: currentWidgetPage,
     );
   }
 }
