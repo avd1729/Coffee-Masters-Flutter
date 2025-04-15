@@ -6,12 +6,22 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ProductItem(
-      product: Product(
-        id: 1, 
-        name: "IPhone 16 Pro Max", 
-        price: 2000, 
-        image: ""));
+    return ListView(
+      children: [
+        ProductItem(
+        product: Product(
+          id: 1, 
+          name: "IPhone 16 Pro Max", 
+          price: 2000, 
+          image: "")),
+        ProductItem(
+        product: Product(
+          id: 1, 
+          name: "IPhone 16 Pro Max", 
+          price: 2000, 
+          image: ""))
+      ],
+    );
   }
 }
 
@@ -30,9 +40,21 @@ class ProductItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.asset("images/black_coffee.png"),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(product.name, style: TextStyle(fontWeight: FontWeight.bold),),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(product.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 15.0,  right: 20.0),
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text("Add + "),
+                  ),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
