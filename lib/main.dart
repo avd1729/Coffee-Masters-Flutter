@@ -42,6 +42,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: OffersPage(),
+      bottomNavigationBar: BottomNavigationBar(items: const [
+        BottomNavigationBarItem(label: "Menu", icon: Icon(Icons.coffee)),
+        BottomNavigationBarItem(label: "Offers", icon: Icon(Icons.local_offer)),
+        BottomNavigationBarItem(label: "Order", icon: Icon(Icons.shopping_basket)),
+      ]),
     );
   }
 }

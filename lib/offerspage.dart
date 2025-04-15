@@ -5,9 +5,15 @@ class OffersPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         Offer(
+          title: 'Diwali offer', 
+          description: 'This app slaps!!',),
+           Offer(
+          title: 'Diwali offer', 
+          description: 'This app slaps!!',),
+           Offer(
           title: 'Diwali offer', 
           description: 'This app slaps!!',),
            Offer(
