@@ -42,7 +42,10 @@ class Greet extends StatefulWidget {
 }
 
 class _GreetState extends State<Greet> {
+  
   var name = "";
+  var greetStyle = const TextStyle(fontSize: 24);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -51,7 +54,7 @@ class _GreetState extends State<Greet> {
           padding: const EdgeInsets.all(16.0),
           child: Row(
             children: [
-              Text("Hello $name"),
+              Text("Hello $name",style: greetStyle,),
               const Text("!!!"),
             ],
           ),
