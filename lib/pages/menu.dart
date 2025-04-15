@@ -13,13 +13,13 @@ class MenuPage extends StatelessWidget {
           id: 1, 
           name: "IPhone 16 Pro Max", 
           price: 2000, 
-          image: "")),
+          image: ""), onAdd: () {},),
         ProductItem(
         product: Product(
           id: 1, 
           name: "IPhone 16 Pro Max", 
           price: 2000, 
-          image: ""))
+          image: ""), onAdd: () {},)
       ],
     );
   }
@@ -28,8 +28,9 @@ class MenuPage extends StatelessWidget {
 class ProductItem extends StatelessWidget {
 
   final Product product;
+  final Function onAdd;
 
-  const ProductItem({super.key, required this.product});
+  const ProductItem({super.key, required this.product, required this.onAdd});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,9 @@ class ProductItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 15.0,  right: 20.0),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      onAdd(product);
+                    },
                     child: const Text("Add + "),
                   ),
                 ),
