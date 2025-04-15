@@ -29,15 +29,25 @@ class MenuPage extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(categories[index].name),
+                  child: Text(categories[index].name, style: TextStyle(
+                    fontStyle: 
+                    FontStyle.normal,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'serif',
+                          color: Colors.brown[700],
+                          letterSpacing: 1.2,
+                  ),),
                 ),
                 ListView.builder(
                   shrinkWrap: true,
                   physics: ClampingScrollPhysics(),
                   itemCount: categories[index].products.length,
                   itemBuilder: (context, prodIndex) {
-                    return ProductItem(product: categories[index].products[prodIndex], 
-                    onAdd: () {});
+                    var product = categories[index].products[prodIndex];
+                    return ProductItem(product: product, 
+                    onAdd: (addedProduct) {
+                      dataManager.cartAdd(addedProduct);
+                    });
                 })
               ],
             );
@@ -76,7 +86,7 @@ class ProductItem extends StatelessWidget {
                     onPressed: () {
                       onAdd(product);
                     },
-                    child: const Text("Add + "),
+                    child: const Text("Add"),
                   ),
                 ),
               ],

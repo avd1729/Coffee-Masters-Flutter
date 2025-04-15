@@ -8,23 +8,21 @@ class OffersPage extends StatelessWidget {
     return ListView(
       children: [
         Offer(
-          title: 'Diwali offer', 
-          description: 'This app slaps!!',),
-           Offer(
-          title: 'Diwali offer', 
-          description: 'This app slaps!!',),
-           Offer(
-          title: 'Diwali offer', 
-          description: 'This app slaps!!',),
-           Offer(
-          title: 'Diwali offer', 
-          description: 'This app slaps!!',),
-           Offer(
-          title: 'Diwali offer', 
-          description: 'This app slaps!!',),
-           Offer(
-          title: 'Diwali offer', 
-          description: 'This app slaps!!',),
+          title: 'Buy 1 Get 1 Free',
+          description: 'On all cappuccinos this weekend only!',
+        ),
+        Offer(
+          title: 'Happy Hour ☕',
+          description: 'Espresso shots at half price, 4–6 PM daily.',
+        ),
+        Offer(
+          title: 'New Launch: Iced Latte',
+          description: 'Cool down with our latest iced treat!',
+        ),
+        Offer(
+          title: 'Loyalty Perk',
+          description: 'Collect 5 stars, get a free Americano.',
+        ),
       ],
     );
   }
@@ -70,13 +68,25 @@ class Offer extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: Theme.of(context).textTheme.headlineLarge,
+                        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'serif', // Try 'monospace' or remove if platform default is good
+                          color: Colors.brown[700],
+                          letterSpacing: 1.2,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 8),
                       Text(
                         description,
-                        style: Theme.of(context).textTheme.headlineMedium,
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          fontStyle: FontStyle.italic,
+                          fontWeight: FontWeight.w600,
+                          fontFamily: 'serif', // Try 'monospace' or remove if platform default is good
+                          color: Colors.brown[700],
+                          letterSpacing: 1.2,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ],

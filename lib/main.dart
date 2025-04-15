@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         
         items: const [
-        BottomNavigationBarItem(label: "Menu", icon: Icon(Icons.coffee)),
+        BottomNavigationBarItem(label: "Menu", icon: Icon(Icons.local_cafe)),
         BottomNavigationBarItem(label: "Offers", icon: Icon(Icons.local_offer)),
         BottomNavigationBarItem(label: "Order", icon: Icon(Icons.shopping_basket)),
       ]),
